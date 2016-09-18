@@ -124,8 +124,13 @@ public class CompatibilityDialog extends AlertDialog {
             @Override
             public void onClick(View v) {
 
-                FragmentE.getInstance().calculatingRes(x, pos);
+                if(pos==1)
+                    AppController.getInstance().setCompatibilityImg1(x);
+                else
+                    AppController.getInstance().setCompatibilityImg2(x);
 
+
+                FragmentE.getInstance().calculatingRes(x, pos);
                 CompatibilityDialog.getInstance().dismiss();
 
             }
