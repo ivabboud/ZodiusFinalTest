@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_collapseMode="pin"
+        android:elevation="10dp">
+
+        <ImageView
+            android:id="@+id/firstHoro"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:background="@drawable/vert_selector2"
+            android:src="@drawable/empty_sign">
+
+        </ImageView>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/gender">
+
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/secondHoro"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:background="@drawable/vert_selector2"
+            android:src="@drawable/empty_sign">
+
+        </ImageView>
+
+    </LinearLayout>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="10dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="20dp">
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior = "@string/appbar_scrolling_view_behavior"
+        >
+
+        <include
+            android:id="@+id/cardView"
+            layout="@layout/compatibility_card" />
+
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>
+
+</LinearLayout>
+
+
+
+
+
+

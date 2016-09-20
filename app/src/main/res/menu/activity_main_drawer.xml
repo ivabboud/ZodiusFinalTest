@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_a"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Daily" />
+        <item
+            android:id="@+id/nav_b"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Yearly" />
+        <item
+            android:id="@+id/nav_c"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Chinees" />
+        <item
+            android:id="@+id/nav_d"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Personality" />
+        <item
+            android:id="@+id/nav_e"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Compatibility" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_setting"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Settings" />
+            <item
+                android:id="@+id/nav_moreapps"
+                android:icon="@drawable/ic_menu_send"
+                android:title="More Apps" />
+        </menu>
+    </item>
+
+</menu>

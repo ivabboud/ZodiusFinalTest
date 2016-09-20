@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:animateLayoutChanges="true">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/vert_selector"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="Choose Sign" />
+
+    <include layout="@layout/line" />
+
+    <include
+        android:id="@+id/linear1"
+        layout="@layout/dialog_compatibility_linear" />
+
+    <include
+        android:id="@+id/linear2"
+        layout="@layout/dialog_compatibility_linear" />
+
+    <include
+        android:id="@+id/linear3"
+        layout="@layout/dialog_compatibility_linear" />
+
+    <include
+        android:id="@+id/linear4"
+        layout="@layout/dialog_compatibility_linear" />
+
+    <include layout="@layout/line" />
+
+    <TextView
+        android:id="@+id/cancel_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/vert_selector"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="Cancel"
+        />
+
+
+</LinearLayout>

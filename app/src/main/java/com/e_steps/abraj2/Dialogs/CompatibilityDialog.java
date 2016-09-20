@@ -116,6 +116,12 @@ public class CompatibilityDialog extends AlertDialog {
         img12.setColorFilter(context.getResources().getColor(STATICS.COLORS_PRIMARY[AppController.getInstance().getColorNum()]));
 
 
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CompatibilityDialog.getInstance().dismiss();
+            }
+        });
     }
 
 

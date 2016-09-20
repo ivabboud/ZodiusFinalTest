@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "381362708173",
+    "firebase_url": "https://abrajtest-5b886.firebaseio.com",
+    "project_id": "abrajtest-5b886",
+    "storage_bucket": "abrajtest-5b886.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381362708173:android:b6d0beb1729d4557",
+        "android_client_info": {
+          "package_name": "com.e_steps.abraj2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381362708173-brg0g5lr061b9v761s7i18erpd97djd5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK1_5ezsHKT9DJHoU6VYtqUk2_W3jKahs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

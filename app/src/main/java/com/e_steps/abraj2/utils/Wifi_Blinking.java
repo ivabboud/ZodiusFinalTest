@@ -63,7 +63,7 @@ public class Wifi_Blinking {
         if(res==2)
         {
             res=0;
-            if(NetworkUtil.getConnectivityStatus(activity) == 0)
+            if(NetworkUtil.getConnectivityStatus())
             {
                 stopBlinking();
                 imageView.setImageResource(wifi[3]);

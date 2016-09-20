@@ -10,11 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.e_steps.abraj2.Dialogs.CompatibilityDialog;
 import com.e_steps.abraj2.R;
 import com.e_steps.abraj2.utils.AppController;
+import com.e_steps.abraj2.utils.GetData;
 import com.e_steps.abraj2.utils.STATICS;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,12 +27,13 @@ import com.google.firebase.database.ValueEventListener;
 
 public class FragmentE extends Fragment {
     ImageView img1, img2;
+    ProgressBar progressBar;
     private static FragmentE instance;
     private int iv1 = -1, iv2 = -1, res;
     TextView cardViewTitle, cardContentText;
     LinearLayout shareLinear;
     View card, view;
-    int sec[] = {1, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};
+    private int sec[] = {1, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37};
     DatabaseReference databaseReference;
     String value;
 
@@ -61,24 +64,29 @@ public class FragmentE extends Fragment {
         cardContentText.setTypeface(AppController.getInstance().getFont());
         cardContentText.setGravity(Gravity.LEFT);
 
+        progressBar = (ProgressBar) card.findViewById(R.id.progressBar);
+
 
         img1 = (ImageView) view.findViewById(R.id.firstHoro);
         img2 = (ImageView) view.findViewById(R.id.secondHoro);
         img1.setColorFilter(getResources().getColor(STATICS.COLORS_PRIMARY[AppController.getInstance().getColorNum()]));
         img2.setColorFilter(getResources().getColor(STATICS.COLORS_PRIMARY[AppController.getInstance().getColorNum()]));
 
+        img1.setColorFilter(getResources().getColor(R.color.white_f5));
+
+        img2.setColorFilter(getResources().getColor(R.color.white_f5));
         if (AppController.getInstance().getCompatibilityImg1() != 0)
             img1.setImageResource(STATICS.HOROSCOPE_LOGO_C[AppController.getInstance().getCompatibilityImg1()]);
 
         if (AppController.getInstance().getCompatibilityImg2() != 0)
             img2.setImageResource(STATICS.HOROSCOPE_LOGO_C[AppController.getInstance().getCompatibilityImg2()]);
 
+
         iv1 = AppController.getInstance().getCompatibilityImg1() - 1;
         iv2 = AppController.getInstance().getCompatibilityImg2() - 1;
+        if(iv1 >=0 && iv2>=0)
         res = ((sec[iv1] * 13) % 77) * ((sec[iv2]) * 13 % 77);
         getHoro();
-        ImageView imageView = (ImageView) card.findViewById(R.id.card_icon);
-        imageView.setVisibility(View.GONE);
 
         shareLinear = (LinearLayout) card.findViewById(R.id.share_linear);
         shareLinear.setEnabled(false);
@@ -96,20 +104,7 @@ public class FragmentE extends Fragment {
     private void getHoro() {
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("COMPATIBILITY").child(String.valueOf(res));
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                value = dataSnapshot.getValue(String.class);
-                cardContentText.setText(value);
-                shareLinear.setEnabled(true);
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+        //new GetData(getActivity() , databaseReference,progressBar , cardContentText);
     }
 
     public static synchronized FragmentE getInstance() {
@@ -122,6 +117,7 @@ public class FragmentE extends Fragment {
             public void onClick(View v) {
                 new CompatibilityDialog(getContext()).show();
                 CompatibilityDialog.getInstance().setCompatibilityImg(pos);
+                shareLinear.setEnabled(false);
             }
         });
     }

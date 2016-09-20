@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.e_steps.abraj2.R;
@@ -130,6 +131,10 @@ public class fragment_d_child extends Fragment {
         share3 = (LinearLayout) card3.findViewById(R.id.share_linear);
         share4 = (LinearLayout) card4.findViewById(R.id.share_linear);
         share5 = (LinearLayout) card5.findViewById(R.id.share_linear);
+
+
+        ProgressBar progressBar = (ProgressBar) card1.findViewById(R.id.progressBar);
+
 
 
 

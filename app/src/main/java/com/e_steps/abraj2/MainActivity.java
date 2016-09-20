@@ -22,6 +22,7 @@ import com.e_steps.abraj2.Fragments.E_Compatibility.FragmentE;
 import com.e_steps.abraj2.utils.AppController;
 import com.e_steps.abraj2.utils.Blinking;
 import com.e_steps.abraj2.utils.STATICS;
+import com.e_steps.abraj2.utils.StoredString;
 import com.e_steps.abraj2.utils.Wifi_Blinking;
 
 @SuppressWarnings("ConstantConditions")
@@ -33,12 +34,14 @@ public class MainActivity extends AppCompatActivity
     ImageView wifi;
     private TextView toolbar_title;
     private Wifi_Blinking wifi_blinking;
+    private StoredString storedString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    mInstance = this;
 
-mInstance = this;
+        storedString = new StoredString();
 
 
 
@@ -70,6 +73,16 @@ mInstance = this;
         wifi_blinking = new Wifi_Blinking(this, wifi);
         wifi_blinking.startBlinking();
 
+    }
+
+    public void store(String text , int sec , int row , int col)
+    {
+        storedString.Store(text,sec,row,col);
+    }
+
+    public String getString(int sec , int row , int col)
+    {
+        return storedString.getString(sec,row,col);
     }
 
     public Wifi_Blinking get_wifi()

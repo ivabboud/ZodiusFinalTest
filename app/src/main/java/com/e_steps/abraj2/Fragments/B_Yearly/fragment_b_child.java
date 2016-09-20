@@ -8,12 +8,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -21,6 +23,7 @@ import com.e_steps.abraj2.MainActivity;
 import com.e_steps.abraj2.R;
 import com.e_steps.abraj2.utils.AppController;
 import com.e_steps.abraj2.utils.Blinking;
+import com.e_steps.abraj2.utils.GetData;
 import com.e_steps.abraj2.utils.STATICS;
 import com.e_steps.abraj2.utils.Wifi_Blinking;
 import com.google.firebase.database.DataSnapshot;
@@ -39,6 +42,8 @@ public class fragment_b_child extends Fragment {
     DatabaseReference databaseReference;
     private String value=null;
     LinearLayout share;
+    SwipeRefreshLayout swipeRefreshLayout;
+    ProgressBar progressBar;
     private String[] part = {"general", "love", "health", "family", "career"};
     private int[] icons = {R.drawable.general_ic, R.drawable.love_couple, R.drawable.doctor, R.drawable.family
             , R.drawable.career};
@@ -54,6 +59,8 @@ public class fragment_b_child extends Fragment {
             {4.5, 3.5, 2, 1.5, 4}, {4.5, 3.5, 2, 1.5, 4}};
 
     private Blinking blinking;
+
+    private GetData getData;
 
 
     @Override
@@ -77,20 +84,49 @@ public class fragment_b_child extends Fragment {
             }
         });
 
+        progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
+
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swip_refresh);
+
+
+
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+
+
+
 
 
 
         RatingBar ratingBar = (RatingBar) view.findViewById(R.id.rating);
         setRatingBarStart(ratingBar);
 
-        blinking = new Blinking(child_text);
-        blinking.startBlinking();
+
+
 
 
 
 
 
         getHoro(mTab, mHoro);
+        getData = new GetData(2, mHoro, mTab);
+        getData.Getdata(getActivity() , databaseReference , progressBar , child_text);
+
+
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        getData.Getdata(getActivity() , databaseReference , progressBar , child_text);
+                        MainActivity.getmInstance().store(child_text.getText().toString(),2,mHoro,mTab);
+
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                },2000);
+            }
+        });
         return view;
     }
 
@@ -133,29 +169,7 @@ public class fragment_b_child extends Fragment {
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
 
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                value = dataSnapshot.getValue(String.class);
-                blinking.stopBlinking();
-                child_text.setText(value);
-                child_text.setGravity(Gravity.LEFT);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                child_text.setText(databaseError.toString());
-
-            }
-        });
-
-
-    }
 
     private void shareHoro() {
 
